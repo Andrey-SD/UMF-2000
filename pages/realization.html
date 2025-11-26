@@ -17,15 +17,23 @@
     <nav><a href="../index.html" class="home-link menu-button">На головну</a></nav>
   </header>
 
-  <img id="table" src="../img/table.png" alt="">
+  <picture>
+    <source srcset="../img/table.webp" type="image/webp">
+    <img id="table" src="../img/table.png" alt="" loading="lazy" decoding="async">
+  </picture>
+
   <div id="umf-stand" style="width: 100%;">
-    <img id="umf-image" src="../img/stand1.png" alt="УМФ-2000">
+    <picture>
+      <source srcset="../img/stand1.webp" type="image/webp">
+      <img id="umf-image" src="../img/stand1.png" alt="УМФ-2000" loading="lazy" decoding="async">
+    </picture>
+
 
     <div id="plate-wrapper">
-      <img id="plate" src="" alt="">
+      <!-- Підвантажуєть зі скрипту -->
+      <img id="plate" src="" alt="матеріал">
     </div>
 
-    <!-- Кнопки поверх зображення -->
     <div class="umf-button" data-action="stop" style="top: 49%; left: 27%; width: 2.5%; height: 5%;"></div>
     <div class="umf-button" data-action="start" style="top: 49%; left: 42.5%; width: 2.5%; height: 5%;"></div>
 
