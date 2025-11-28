@@ -39,36 +39,60 @@ body {
 
 }
 
+.led-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
 .led {
-  width: 3%;
+  width: 5%;
   aspect-ratio: 1/1;
   background-color: rgb(71, 6, 6);
   position: absolute;
   z-index: -1;
+  /* z-index: 10; */
 }
 
 .led.active {
   background-color: red;
 }
 
-.led:nth-child(1) {
-  top: 79%;
-  left: 17%;
+#led-power {
+  top: 61%;
+  left: 28%;
 }
 
-.led:nth-child(2) {
-  top: 57%;
-  left: 20%;
+#led-alpha {
+  top: 40%;
+  left: 31%;
 }
 
-.led:nth-child(3) {
-  top: 57%;
+#led-beta {
+  top: 40%;
+  left: 37%;
+}
+
+#led-count {
+  top: 31%;
+  left: 49%;
+}
+
+#btn-power {
+  position: absolute;
+  top: 62%;
   left: 26%;
+  width: 8%;
+  height: 4%;
+  background-color: transparent;
+  z-index: 10;
 }
 
-.led:nth-child(4) {
-  top: 49%;
-  left: 40%;
+#btn-power:hover{
+  cursor: pointer;
 }
 
 .display {

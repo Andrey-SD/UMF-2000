@@ -1,3 +1,12 @@
+//Ініціалізація світлоіндікаторів
+
+const ledPower = document.getElementById("led-power");
+const ledAlpha = document.getElementById("led-alpha");
+const ledBeta = document.getElementById("led-beta");
+const ledCount = document.getElementById("led-count");
+const btnPower = document.getElementById("btn-power");
+
+let onOffState = false;
 // об'єкт семисегментного дисплея (beta випромінювань)
 
 const sevenSegmentDisplay = (displayElement) => {
@@ -89,7 +98,14 @@ const sevenSegmentDisplay = (displayElement) => {
   };
 
   const print = (display, text, length = 4) => {
+
     if (!display) return;
+
+    if (!onOffState) {
+      const digits = display.querySelectorAll('.digit-text');
+      digits.forEach(d => d.textContent = " ");
+      return;
+    }
     text = text.split(".")[0];
     text = (text.length > 4) ? "9999" : text;
 
@@ -103,7 +119,7 @@ const sevenSegmentDisplay = (displayElement) => {
     });
   };
 
-  return { start, stop, reset };
+  return { start, stop, reset, print };
 };
 
 // об'єкт дисплея секундоміра
@@ -113,7 +129,8 @@ const stopWatch = (displayElement, soundElement) => {
   let setIntervalId = null;
 
   const update = () => {
-    const secs = String(seconds).padStart(4, '0');
+    const secs =(onOffState)? String(seconds).padStart(4, '0'):"";
+    
     displayElement.textContent = secs;
   };
 
@@ -130,11 +147,13 @@ const stopWatch = (displayElement, soundElement) => {
     clearInterval(setIntervalId);
     running = true;
     seconds = 0;
+    ledCount.classList.add("active");
     update();
     setIntervalId = setInterval(tick, 1000);
   };
 
   const stop = () => {
+    ledCount.classList.remove("active");
     if (setIntervalId) {
       clearInterval(setIntervalId);
       setIntervalId = null;
@@ -184,8 +203,10 @@ document.querySelectorAll('.umf-button').forEach(button => {
   button.addEventListener('click', () => {
     const action = button.dataset.action;
     if (action === 'start') {
-      betaDisplay.start();
-      stopWatchDisplay.start();
+      if (onOffState) {
+        betaDisplay.start();
+        stopWatchDisplay.start();
+      }
     } else if (action === 'stop') {
       betaDisplay.stop();
       stopWatchDisplay.stop();
@@ -194,3 +215,23 @@ document.querySelectorAll('.umf-button').forEach(button => {
 });
 
 //*****/
+
+
+
+
+btnPower.addEventListener("click", () => {
+  onOffState = !onOffState;
+  if (onOffState) {
+    ledPower.classList.add("active");
+    ledBeta.classList.add("active");
+  } else {
+    ledPower.classList.remove("active");
+    ledBeta.classList.remove("active");
+  }
+  betaDisplay.stop();
+  stopWatchDisplay.stop();
+  betaDisplay.print(betaDisplayElement, "");
+  stopWatchDisplay.stop();
+});
+
+// betaDisplay.print(betaDisplayElement, "");
