@@ -35,6 +35,27 @@ body {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
+.download-container {
+  display: flex;
+  justify-content: end;
+}
+
+.download-btn {
+  width: 46px;
+}
+
+.download-icon {
+  width: 100%;
+  color: var(--font-color);
+}
+
+.download-btn,
+.download-btn:focus,
+.download-btn:active {
+  outline: none;
+  border: none;
+}
+
 .article-wrapper h1,
 .article-wrapper h2,
 .article-wrapper h3 {
@@ -54,8 +75,6 @@ body {
   text-align: left;
   margin-bottom: 1rem;
 }
-
-.article-wrapper p {}
 
 .article-wrapper .block {
   margin-bottom: 0.6rem;
@@ -173,6 +192,7 @@ footer {
   text-align: center;
   margin-bottom: 20px;
 }
+
 #theoretic-img>img {
   width: 60%;
 }
